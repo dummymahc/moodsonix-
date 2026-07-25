@@ -116,26 +116,37 @@ highlightKey: String? = null) {
             item { AboutAppCard() }
 
             item {
-                AboutSectionCard(title = "Developer") {
+                AboutSectionCard(title = "Built by") {
                     AboutActionRow(
                         icon = painterResource(R.drawable.website),
-                        title = "Website",
+                        title = "Abhinav K Tony",
+                        subtitle = "Developer of Moodsonix",
+                        onClick = { },
+                    )
+                }
+            }
+
+            item {
+                AboutSectionCard(title = "Based on Echo Music") {
+                    AboutActionRow(
+                        icon = painterResource(R.drawable.github),
+                        title = "Echo Music (open source)",
+                        subtitle = "github.com/iad1tya/Echo-Music",
+                        onClick = { uriHandler.openUri("https://github.com/iad1tya/Echo-Music") },
+                    )
+                    AboutDivider()
+                    AboutActionRow(
+                        icon = painterResource(R.drawable.website),
+                        title = "Original developer: Aditya",
                         subtitle = "iad1tya.cyou",
                         onClick = { uriHandler.openUri("https://iad1tya.cyou") },
                     )
                     AboutDivider()
                     AboutActionRow(
-                        icon = painterResource(R.drawable.ic_instagram_new),
-                        title = "Instagram",
-                        subtitle = "@iad1tya",
-                        onClick = { uriHandler.openUri("https://instagram.com/iad1tya") },
-                    )
-                    AboutDivider()
-                    AboutActionRow(
-                        icon = painterResource(R.drawable.ic_x_new),
-                        title = "X (Twitter)",
-                        subtitle = "@xad1tya",
-                        onClick = { uriHandler.openUri("https://x.com/xad1tya") },
+                        icon = painterResource(R.drawable.website),
+                        title = "License: GPL-3.0",
+                        subtitle = "Moodsonix is open source under GPL-3.0",
+                        onClick = { uriHandler.openUri("https://github.com/iad1tya/Echo-Music/blob/main/LICENSE") },
                     )
                 }
             }
@@ -299,7 +310,7 @@ private fun AboutAppCard() {
             Spacer(Modifier.height(4.dp))
             
             Text(
-                text = if (rotation <= 90f) "Echo Music" else "Developed by Aditya",
+                text = if (rotation <= 90f) "Moodsonix" else "Developed by Aditya",
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface,

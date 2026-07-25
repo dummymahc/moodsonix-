@@ -1,6 +1,6 @@
-# Echo Music
+# Moodsonix
 
-A modern Android music app with ad-free streaming, synced lyrics, offline playback, and an intuitive user experience. Streams from YouTube Music's library.
+A modern Android music app with ad-free streaming, synced lyrics, offline playback, mood-based AI playlist generation, and an intuitive user experience. Streams from YouTube Music's library. Built by Abhinav K Tony, based on Echo Music (GPL-3.0).
 
 ## Stack
 

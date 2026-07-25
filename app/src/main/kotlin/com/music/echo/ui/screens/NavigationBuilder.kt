@@ -64,6 +64,7 @@ import iad1tya.echo.music.echomusic.changelog.ChangelogScreen
 import iad1tya.echo.music.echomusic.commitscreen.CommitScreen
 import iad1tya.echo.music.ui.screens.equalizer.axion.AxionEqScreen
 import iad1tya.echo.music.ui.screens.ambient.AmbientModeScreen
+import iad1tya.echo.music.ui.screens.MoodPlaylistScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 fun NavGraphBuilder.navigationBuilder(
@@ -140,6 +141,10 @@ fun NavGraphBuilder.navigationBuilder(
 
     composable("mood_and_genres") {
         MoodAndGenresScreen(navController, scrollBehavior)
+    }
+
+    composable("mood_playlist") {
+        MoodPlaylistScreen(navController, scrollBehavior)
     }
 
     composable("account") {

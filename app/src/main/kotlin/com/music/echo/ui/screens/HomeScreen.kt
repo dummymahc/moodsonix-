@@ -193,6 +193,7 @@ sealed class HomeSection(val id: String, val baseWeight: Int) {
     data class SimilarRecommendation(val index: Int) : HomeSection("similar_recommendation_$index", 10)
     data class HomePageSection(val index: Int) : HomeSection("home_page_section_$index", 10)
     data object MoodAndGenres : HomeSection("mood_and_genres", 5)
+    data object MoodPlaylist : HomeSection("mood_playlist", 85)
 }
 
 @Composable
@@ -821,6 +822,7 @@ fun HomeScreen(
     ) {
         val list = mutableListOf<HomeSection>()
 
+        list.add(HomeSection.MoodPlaylist)
         if (showSpeedDial && speedDialItems.isNotEmpty()) list.add(HomeSection.SpeedDial)
         if (aiRecommendedPlaylist != null && aiRecommendedPlaylist!!.second.isNotEmpty()) list.add(HomeSection.AiRecommendations)
         if (quickPicks?.isNotEmpty() == true) list.add(HomeSection.QuickPicks)
@@ -851,6 +853,7 @@ fun HomeScreen(
                 
                 val base = when (section) {
                     HomeSection.QuickPicks -> 10000
+                    HomeSection.MoodPlaylist -> 600
                     HomeSection.SpeedDial,
                     HomeSection.DailyDiscover -> 500 
 
@@ -885,6 +888,7 @@ fun HomeScreen(
         } else {
             val defaultOrder = mapOf(
                 HomeSection.QuickPicks to 1000,
+                HomeSection.MoodPlaylist to 950,
                 HomeSection.SpeedDial to 100,
                 HomeSection.FromTheCommunity to 80,
                 HomeSection.DailyDiscover to 70,
@@ -990,6 +994,51 @@ fun HomeScreen(
 
                 homeSections.forEach { section ->
                     when (section) {
+                        HomeSection.MoodPlaylist -> {
+                            item(key = "mood_playlist_banner") {
+                                Card(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 16.dp, vertical = 4.dp)
+                                        .combinedClickable(onClick = { navController.navigate("mood_playlist") })
+                                        .animateItem(),
+                                    shape = RoundedCornerShape(20.dp),
+                                    colors = CardDefaults.cardColors(containerColor = Color.Transparent),
+                                ) {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .background(
+                                                Brush.linearGradient(
+                                                    listOf(Color(0xFF6A5AE0), Color(0xFFFF6B9D))
+                                                ),
+                                                shape = RoundedCornerShape(20.dp)
+                                            )
+                                            .padding(horizontal = 20.dp, vertical = 16.dp),
+                                    ) {
+                                        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                                            Text(
+                                                text = "🎵 Mood Playlist",
+                                                style = MaterialTheme.typography.titleMedium,
+                                                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                                                color = Color.White,
+                                            )
+                                            Text(
+                                                text = "Pick a mood, get the perfect playlist",
+                                                style = MaterialTheme.typography.bodySmall,
+                                                color = Color.White.copy(alpha = 0.85f),
+                                            )
+                                        }
+                                        Text(
+                                            text = "→",
+                                            style = MaterialTheme.typography.titleLarge,
+                                            color = Color.White.copy(alpha = 0.7f),
+                                            modifier = Modifier.align(Alignment.CenterEnd),
+                                        )
+                                    }
+                                }
+                            }
+                        }
                         HomeSection.SpeedDial -> {
                             speedDialItems.takeIf { it.isNotEmpty() }?.let { items ->
                                 item(key = "speed_dial_title") {

@@ -394,7 +394,8 @@ suspend fun generateMoodPlaylist(
 
     onLog("Asking AI for ${mood.label} track recommendations…")
 
-    val apiKey = context.dataStore.get(OpenRouterApiKey, "")
+    val storedKey = context.dataStore.get(OpenRouterApiKey, "")
+    val apiKey = storedKey.ifEmpty { iad1tya.echo.music.BuildConfig.OPEN_ROUTER_API_KEY }
     val baseUrl = context.dataStore.get(OpenRouterBaseUrlKey, "https://openrouter.ai/api/v1/chat/completions")
     val model = context.dataStore.get(OpenRouterModelKey, "google/gemini-2.5-flash-lite")
 

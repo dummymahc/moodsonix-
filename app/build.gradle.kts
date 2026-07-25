@@ -46,6 +46,10 @@ android {
         buildConfigField("String", "LASTFM_API_KEY", "\"$lastFmKey\"")
         buildConfigField("String", "LASTFM_SECRET", "\"$lastFmSecret\"")
 
+        // OpenRouter API key (Moodsonix AI mood playlists)
+        val openRouterApiKey = localProperties.getProperty("open_router_apikey") ?: System.getenv("open_router_apikey") ?: ""
+        buildConfigField("String", "OPEN_ROUTER_API_KEY", "\"$openRouterApiKey\"")
+
         // GitHub OAuth keys
         val githubClientId = localProperties.getProperty("GH_CLIENT_ID") ?: System.getenv("GH_CLIENT_ID") ?: ""
         val githubClientSecret = localProperties.getProperty("GH_CLIENT_SECRET") ?: System.getenv("GH_CLIENT_SECRET") ?: ""

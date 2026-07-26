@@ -31,7 +31,6 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -46,14 +45,6 @@ import iad1tya.echo.music.R
 import iad1tya.echo.music.ui.component.IconButton
 import iad1tya.echo.music.ui.utils.backToMain
 
-import androidx.compose.ui.platform.LocalContext
-import android.content.ActivityNotFoundException
-import android.content.Intent
-import android.net.Uri
-import android.provider.Settings
-import android.os.Build
-import android.widget.Toast
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutScreen(
@@ -61,9 +52,6 @@ fun AboutScreen(
     scrollBehavior: TopAppBarScrollBehavior,
     onBack: (() -> Unit)? = null,
 highlightKey: String? = null) {
-    val uriHandler = LocalUriHandler.current
-    val context = LocalContext.current
-
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -119,113 +107,12 @@ highlightKey: String? = null) {
                 AboutSectionCard(title = "Built by") {
                     AboutActionRow(
                         icon = painterResource(R.drawable.website),
-                        title = "Abhinav K Tony",
+                        title = "Abhinav K Tont",
                         subtitle = "Developer of Moodsonix",
                         onClick = { },
                     )
                 }
             }
-
-            item {
-                AboutSectionCard(title = "Based on Echo Music") {
-                    AboutActionRow(
-                        icon = painterResource(R.drawable.github),
-                        title = "Echo Music (open source)",
-                        subtitle = "github.com/iad1tya/Echo-Music",
-                        onClick = { uriHandler.openUri("https://github.com/iad1tya/Echo-Music") },
-                    )
-                    AboutDivider()
-                    AboutActionRow(
-                        icon = painterResource(R.drawable.website),
-                        title = "Original developer: Aditya",
-                        subtitle = "iad1tya.cyou",
-                        onClick = { uriHandler.openUri("https://iad1tya.cyou") },
-                    )
-                    AboutDivider()
-                    AboutActionRow(
-                        icon = painterResource(R.drawable.website),
-                        title = "License: GPL-3.0",
-                        subtitle = "Moodsonix is open source under GPL-3.0",
-                        onClick = { uriHandler.openUri("https://github.com/iad1tya/Echo-Music/blob/main/LICENSE") },
-                    )
-                }
-            }
-
-            item {
-                AboutSectionCard(title = "Support") {
-                    AboutActionRow(
-                        icon = painterResource(R.drawable.coffee),
-                        title = "Buy Me a Coffee",
-                        subtitle = "buymeacoffee.com/iad1tya",
-                        onClick = { uriHandler.openUri("https://buymeacoffee.com/iad1tya") },
-                    )
-                    AboutDivider()
-                    AboutActionRow(
-                        icon = painterResource(R.drawable.ic_patreon_new),
-                        title = "Patreon",
-                        subtitle = "patreon.com/cw/iad1tya",
-                        onClick = { uriHandler.openUri("https://www.patreon.com/cw/iad1tya") },
-                    )
-                    AboutDivider()
-                    AboutActionRow(
-                        icon = painterResource(R.drawable.upi_new),
-                        title = "UPI",
-                        subtitle = "iad1tya@upi",
-                        onClick = { uriHandler.openUri("https://intradeus.github.io/http-protocol-redirector/?r=upi://pay?pa=iad1tya@upi&pn=Aditya%20Yadav&am=&tn=Thank%20You%20so%20much%20for%20this%20support") },
-                    )
-                }
-            }
-
-            item {
-                AboutSectionCard(title = "App") {
-                    AboutActionRow(
-                        icon = painterResource(R.drawable.github),
-                        title = "GitHub",
-                        subtitle = "EchoMusicApp/Echo-Music",
-                        onClick = { uriHandler.openUri("https://github.com/EchoMusicApp/Echo-Music") },
-                    )
-                    AboutDivider()
-                    AboutActionRow(
-                        icon = painterResource(R.drawable.ic_discord_new),
-                        title = "Discord",
-                        subtitle = "discord.gg/EcfV3AxH5c",
-                        onClick = { uriHandler.openUri("https://discord.gg/EcfV3AxH5c") },
-                    )
-                    AboutDivider()
-                    AboutActionRow(
-                        icon = painterResource(R.drawable.ic_telegram_new),
-                        title = "Telegram",
-                        subtitle = "t.me/EchoMusicApp",
-                        onClick = { uriHandler.openUri("https://t.me/EchoMusicApp") },
-                    )
-                }
-            }
-
-            item {
-                AboutSectionCard(title = "Our Services") {
-                    AboutActionRow(
-                        icon = painterResource(R.drawable.ic_canvas),
-                        title = "Echo Canvas",
-                        subtitle = "canvas.echomusic.fun",
-                        onClick = { uriHandler.openUri("https://canvas.echomusic.fun/") },
-                    )
-                    AboutDivider()
-                    AboutActionRow(
-                        icon = painterResource(R.drawable.ic_apple_lossless),
-                        title = "Echo Lossless",
-                        subtitle = "lossless.echomusic.fun",
-                        onClick = { uriHandler.openUri("https://lossless.echomusic.fun/") },
-                    )
-                    AboutDivider()
-                    AboutActionRow(
-                        icon = painterResource(R.drawable.ic_chart),
-                        title = "Echo Charts",
-                        subtitle = "charts.echomusic.fun",
-                        onClick = { uriHandler.openUri("https://charts.echomusic.fun/") },
-                    )
-                }
-            }
-
         }
     }
 }
@@ -310,7 +197,7 @@ private fun AboutAppCard() {
             Spacer(Modifier.height(4.dp))
             
             Text(
-                text = if (rotation <= 90f) "Moodsonix" else "Developed by Aditya",
+                text = if (rotation <= 90f) "Moodsonix" else "Developed by Abhinav K Tont",
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface,

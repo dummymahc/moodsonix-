@@ -192,7 +192,7 @@ private fun WelcomeAppCard() {
             )
             Spacer(Modifier.height(4.dp))
             Text(
-                text = "Echo Music",
+                text = "Moodsonix",
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface,

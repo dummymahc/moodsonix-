@@ -1,0 +1,1 @@
+- [Android SDK build environment](android-sdk-env.md) — SDK + debug keystore are wiped each session; build-apk.sh auto-reinstalls both before invoking Gradle.

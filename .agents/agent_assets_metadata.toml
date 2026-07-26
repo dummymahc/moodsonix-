@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "PtefNYGAtx_FibpyU59Wc"
+uri = "file://app/build/outputs/apk/universalFoss/debug/app-universal-foss-debug.apk"
+type = "unspecified"
+title = "Moodsonix Debug APK"

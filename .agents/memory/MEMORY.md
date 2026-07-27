@@ -1,1 +1,2 @@
 - [Android SDK build environment](android-sdk-env.md) — SDK + debug keystore are wiped each session; build-apk.sh auto-reinstalls both before invoking Gradle.
+- [Moodsonix branding](moodsonix-branding.md) — user-facing app text uses Moodsonix; preserve package names, resource keys, deep-link schemes, and service URLs.

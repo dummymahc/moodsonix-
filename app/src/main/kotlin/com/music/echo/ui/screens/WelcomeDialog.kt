@@ -70,61 +70,24 @@ fun WelcomeDialog(
                     WelcomeActionRow(
                         icon = painterResource(R.drawable.ic_instagram_new),
                         title = "Instagram",
-                        subtitle = "@iad1tya",
-                        onClick = { uriHandler.openUri("https://instagram.com/iad1tya") }
-                    )
-                    WelcomeDivider()
-                    WelcomeActionRow(
-                        icon = painterResource(R.drawable.ic_x_new),
-                        title = "X (Twitter)",
-                        subtitle = "@xad1tya",
-                        onClick = { uriHandler.openUri("https://x.com/xad1tya") }
+                        subtitle = "@abhinav.k.tony",
+                        onClick = { uriHandler.openUri("https://instagram.com/abhinav.k.tony") }
                     )
                     WelcomeDivider()
                     WelcomeActionRow(
                         icon = painterResource(R.drawable.github),
                         title = "GitHub",
-                        subtitle = "iad1tya",
-                        onClick = { uriHandler.openUri("https://github.com/iad1tya") }
+                        subtitle = "percentageup-oss",
+                        onClick = { uriHandler.openUri("https://github.com/percentageup-oss") }
                     )
                 }
 
                 WelcomeSectionCard(title = "Support Moodsonix") {
                     WelcomeActionRow(
-                        icon = painterResource(R.drawable.coffee),
-                        title = "Buy Me a Coffee",
-                        subtitle = "buymeacoffee.com/iad1tya",
-                        onClick = { uriHandler.openUri("https://buymeacoffee.com/iad1tya") }
-                    )
-                    WelcomeDivider()
-                    WelcomeActionRow(
-                        icon = painterResource(R.drawable.ic_patreon_new),
-                        title = "Patreon",
-                        subtitle = "patreon.com/cw/iad1tya",
-                        onClick = { uriHandler.openUri("https://www.patreon.com/cw/iad1tya") }
-                    )
-                    WelcomeDivider()
-                    WelcomeActionRow(
                         icon = painterResource(R.drawable.upi_new),
                         title = "UPI",
-                        subtitle = "iad1tya@upi",
-                        onClick = { uriHandler.openUri("https://intradeus.github.io/http-protocol-redirector/?r=upi://pay?pa=iad1tya@upi&pn=Aditya%20Yadav&am=&tn=Thank%20You%20so%20much%20for%20this%20support") }
-                    )
-                }
-
-                WelcomeSectionCard(title = "Social Community") {
-                    WelcomeActionRow(
-                        icon = painterResource(R.drawable.ic_telegram_new),
-                        title = "Telegram",
-                        subtitle = "t.me/EchoMusicApp",
-                        onClick = { uriHandler.openUri("https://t.me/EchoMusicApp") }
-                    )
-                    WelcomeDivider()
-                    WelcomeActionRow(
-                        icon = painterResource(R.drawable.ic_discord_new),
-                        title = "Discord",
-                        subtitle = "discord.gg/EcfV3AxH5c",
-                        onClick = { uriHandler.openUri("https://discord.com/invite/EcfV3AxH5c") }
+                        subtitle = "chinchutony4@okhdfcbank",
+                        onClick = { uriHandler.openUri("https://intradeus.github.io/http-protocol-redirector/?r=upi://pay?pa=chinchutony4@okhdfcbank&pn=Chinchu%20Tony&am=&tn=Thank%20You") }
                     )
                 }
 

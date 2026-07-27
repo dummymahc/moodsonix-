@@ -3,7 +3,7 @@
 <!-- Upstream InnerTune strings -->
 <!-- Do not add new features here -->
 <!-- Try to re-use strings here, but be careful on its usage e.g. verb vs noun -->
-<!-- "InnerTune" is replaced with "echomusic" -->
+<!-- "InnerTune" is replaced with "Moodsonix" -->
 <!-- Translators: Do not modify this file for translations, use InnerTune's Weblate instead. -->
 
 <resources>
@@ -389,7 +389,7 @@
     <string name="restore_failed">Failed to restore backup</string>
 
     <string name="discord_integration">Discord Integration</string>
-    <string name="discord_information">echomusic uses the KizzyRPC library to set your Discord account\'s status. This involves using the Discord Gateway connection, which may be considered a violation of Discord\'s TOS. However, there are no known cases of user accounts being suspended for this reason. Use at your own risk.\n\echomusic will only extract your token, and everything else is stored locally.</string>
+    <string name="discord_information">Moodsonix uses the KizzyRPC library to set your Discord account\'s status. This involves using the Discord Gateway connection, which may be considered a violation of Discord\'s TOS. However, there are no known cases of user accounts being suspended for this reason. Use at your own risk.\nMoodsonix will only extract your token, and everything else is stored locally.</string>
     <string name="dismiss">Dismiss</string>
     <string name="options">Options</string>
     <string name="preview">Preview</string>
@@ -469,10 +469,10 @@
     <string name="export_directory_unavailable">Unable to access an export directory on this device. Please set one manually.</string>
     <string name="set_listenbrainz_token">Set ListenBrainz Token</string>
 
-    <!-- Echo Extractor Settings -->
-    <string name="youtube_decryption_settings">Echo Extractor</string>
+    <!-- Moodsonix Extractor Settings -->
+    <string name="youtube_decryption_settings">Moodsonix Extractor</string>
     <string name="youtube_decryption_desc">Configure extractor settings</string>
-    <string name="youtube_decryption_support">Echo Extractor</string>
+    <string name="youtube_decryption_support">Moodsonix Extractor</string>
     <string name="youtube_decryption_support_desc">Automatically extracts YouTube playback configurations. Locked to Active.</string>
     <string name="force_update_cipher">Force Update Configurations</string>
     <string name="force_update_cipher_desc">Download the latest extractor override mappings. Limited to 3 updates per day.</string>

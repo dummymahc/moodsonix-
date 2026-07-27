@@ -12,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -28,8 +27,6 @@ import iad1tya.echo.music.constants.AccountEmailKey
 import iad1tya.echo.music.constants.InnerTubeCookieKey
 import iad1tya.echo.music.constants.UseLoginForBrowse
 import iad1tya.echo.music.constants.YtmSyncKey
-import iad1tya.echo.music.constants.AudioQualityKey
-import iad1tya.echo.music.constants.AudioQuality
 import iad1tya.echo.music.ui.component.Material3SettingsGroup
 import iad1tya.echo.music.ui.component.Material3SettingsItem
 import iad1tya.echo.music.utils.rememberPreference
@@ -43,11 +40,6 @@ fun SettingDialoge(
     onNavigate: (String) -> Unit,
     homeViewModel: HomeViewModel
 ) {
-    val uriHandler = LocalUriHandler.current
-    val (audioQuality) = rememberEnumPreference(
-        AudioQualityKey,
-        defaultValue = AudioQuality.OPUS
-    )
     val (innerTubeCookie, _) = rememberPreference(InnerTubeCookieKey, "")
     val isLoggedIn = remember(innerTubeCookie) {
         innerTubeCookie.isNotEmpty() && "SAPISID" in parseCookieString(innerTubeCookie)
@@ -157,25 +149,6 @@ fun SettingDialoge(
                                 }
                             )
                         )
-                        if (audioQuality == AudioQuality.LOSSLESS) {
-                            add(
-                                Material3SettingsItem(
-                                    title = { Text("Donate for lossless music") },
-                                    customIcon = {
-                                        Text(
-                                            text = "$",
-                                            style = MaterialTheme.typography.titleMedium,
-                                            fontWeight = FontWeight.Bold,
-                                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.9f)
-                                        )
-                                    },
-                                    onClick = {
-                                        uriHandler.openUri("https://support.iad1tya.cyou")
-                                        onDismissRequest()
-                                    }
-                                )
-                            )
-                        }
                     }
                 )
 
@@ -237,26 +210,6 @@ fun SettingDialoge(
                     )
                 )
 
-                // Footer Links
-                Row(
-                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = "Privacy Policy",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = onSecondaryColor,
-                        modifier = Modifier.clickable { uriHandler.openUri("https://echomusic.fun/p/privacy-policy") }.padding(4.dp)
-                    )
-                    Text(text = " • ", color = onSecondaryColor, style = MaterialTheme.typography.bodySmall)
-                    Text(
-                        text = "Terms of Service",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = onSecondaryColor,
-                        modifier = Modifier.clickable { uriHandler.openUri("https://echomusic.fun/p/toc") }.padding(4.dp)
-                    )
-                }
             }
         }
     }

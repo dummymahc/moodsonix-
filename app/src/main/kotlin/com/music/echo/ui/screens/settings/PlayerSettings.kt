@@ -81,9 +81,6 @@ import iad1tya.echo.music.ui.utils.backToMain
 import iad1tya.echo.music.utils.rememberEnumPreference
 import iad1tya.echo.music.utils.rememberPreference
 import kotlin.math.roundToInt
-import android.content.Intent
-import android.net.Uri
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlayerSettings(
@@ -331,12 +328,6 @@ highlightKey: String? = null) {
                 onDismiss = { showLosslessAudioWarning = false },
                 title = { Text("Enable Lossless Audio?") },
                 buttons = {
-                    TextButton(onClick = {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://echomusic.fun/donate"))
-                        context.startActivity(intent)
-                    }) {
-                        Text("Donate")
-                    }
                     TextButton(onClick = { showLosslessAudioWarning = false }) {
                         Text(stringResource(R.string.cancel))
                     }
@@ -348,7 +339,7 @@ highlightKey: String? = null) {
                     }
                 }
             ) {
-                Text("Lossless is uncompressed music which is higher in size and requires significant server load. Continuous maintenance requires funding. We have a monthly goal of $200 to keep this active.\n\nPlease consider donating!")
+                Text("Lossless audio is uncompressed music and uses more storage and bandwidth than standard quality.")
             }
         }
 
@@ -358,12 +349,6 @@ highlightKey: String? = null) {
                 onDismiss = { showLosslessDownloadWarning = false },
                 title = { Text("Enable Lossless Downloads?") },
                 buttons = {
-                    TextButton(onClick = {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://echomusic.fun/donate"))
-                        context.startActivity(intent)
-                    }) {
-                        Text("Donate")
-                    }
                     TextButton(onClick = { showLosslessDownloadWarning = false }) {
                         Text(stringResource(R.string.cancel))
                     }
@@ -375,7 +360,7 @@ highlightKey: String? = null) {
                     }
                 }
             ) {
-                Text("Lossless downloads require significant server load and bandwidth. Continuous maintenance requires funding. We have a monthly goal of $200 to keep this active.\n\nPlease consider donating!")
+                Text("Lossless downloads use more storage and bandwidth than standard quality.")
             }
         }
 
@@ -391,8 +376,6 @@ highlightKey: String? = null) {
                 )
             )
         )
-
-        iad1tya.echo.music.ui.component.FundingProgressCard()
 
         Material3SettingsGroup(
             scrollState = scrollState,

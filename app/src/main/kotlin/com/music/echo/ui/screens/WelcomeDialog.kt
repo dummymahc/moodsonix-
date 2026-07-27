@@ -24,7 +24,6 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import coil3.compose.AsyncImage
 import androidx.compose.ui.text.font.FontWeight
@@ -40,8 +39,6 @@ import iad1tya.echo.music.R
 fun WelcomeDialog(
     onDismissRequest: () -> Unit
 ) {
-    val uriHandler = LocalUriHandler.current
-
     Dialog(
         onDismissRequest = onDismissRequest,
         properties = DialogProperties(usePlatformDefaultWidth = false)
@@ -65,88 +62,6 @@ fun WelcomeDialog(
             ) {
                 // Main Header
                 WelcomeAppCard()
-
-                WelcomeSectionCard(title = "Follow Developer") {
-                    WelcomeActionRow(
-                        icon = painterResource(R.drawable.ic_instagram_new),
-                        title = "Instagram",
-                        subtitle = "@iad1tya",
-                        onClick = { uriHandler.openUri("https://instagram.com/iad1tya") }
-                    )
-                    WelcomeDivider()
-                    WelcomeActionRow(
-                        icon = painterResource(R.drawable.ic_x_new),
-                        title = "X (Twitter)",
-                        subtitle = "@xad1tya",
-                        onClick = { uriHandler.openUri("https://x.com/xad1tya") }
-                    )
-                    WelcomeDivider()
-                    WelcomeActionRow(
-                        icon = painterResource(R.drawable.github),
-                        title = "GitHub",
-                        subtitle = "iad1tya",
-                        onClick = { uriHandler.openUri("https://github.com/iad1tya") }
-                    )
-                }
-
-                WelcomeSectionCard(title = "Support Echo") {
-                    WelcomeActionRow(
-                        icon = painterResource(R.drawable.coffee),
-                        title = "Buy Me a Coffee",
-                        subtitle = "buymeacoffee.com/iad1tya",
-                        onClick = { uriHandler.openUri("https://buymeacoffee.com/iad1tya") }
-                    )
-                    WelcomeDivider()
-                    WelcomeActionRow(
-                        icon = painterResource(R.drawable.ic_patreon_new),
-                        title = "Patreon",
-                        subtitle = "patreon.com/cw/iad1tya",
-                        onClick = { uriHandler.openUri("https://www.patreon.com/cw/iad1tya") }
-                    )
-                    WelcomeDivider()
-                    WelcomeActionRow(
-                        icon = painterResource(R.drawable.upi_new),
-                        title = "UPI",
-                        subtitle = "iad1tya@upi",
-                        onClick = { uriHandler.openUri("https://intradeus.github.io/http-protocol-redirector/?r=upi://pay?pa=iad1tya@upi&pn=Aditya%20Yadav&am=&tn=Thank%20You%20so%20much%20for%20this%20support") }
-                    )
-                }
-
-                WelcomeSectionCard(title = "Social Community") {
-                    WelcomeActionRow(
-                        icon = painterResource(R.drawable.ic_telegram_new),
-                        title = "Telegram",
-                        subtitle = "t.me/EchoMusicApp",
-                        onClick = { uriHandler.openUri("https://t.me/EchoMusicApp") }
-                    )
-                    WelcomeDivider()
-                    WelcomeActionRow(
-                        icon = painterResource(R.drawable.ic_discord_new),
-                        title = "Discord",
-                        subtitle = "discord.gg/EcfV3AxH5c",
-                        onClick = { uriHandler.openUri("https://discord.com/invite/EcfV3AxH5c") }
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(4.dp))
-
-                Button(
-                    onClick = { uriHandler.openUri("https://github.com/EchoMusicApp/Echo-Music") },
-                    modifier = Modifier.fillMaxWidth().height(50.dp),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.star),
-                        contentDescription = null,
-                        modifier = Modifier.size(20.dp)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Star the Repo", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
-                }
 
                 Button(
                     onClick = onDismissRequest,
@@ -183,12 +98,11 @@ private fun WelcomeAppCard() {
         ) {
             val isDark = MaterialTheme.colorScheme.surface.luminance() < 0.5f
             AsyncImage(
-                model = R.mipmap.ic_launcher,
-                contentDescription = null,
+                model = R.drawable.moodsonix_logo,
+                contentDescription = "Moodsonix logo",
                 modifier = Modifier
                     .size(100.dp)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.surfaceContainer),
+                    .clip(RoundedCornerShape(20.dp)),
             )
             Spacer(Modifier.height(4.dp))
             Text(

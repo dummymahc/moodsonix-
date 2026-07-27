@@ -876,7 +876,7 @@ class MainActivity : ComponentActivity() {
                 }
 
                 val currentTitle = when (navBackStackEntry?.destination?.route) {
-                    Screens.Home.route -> "Echo Music"
+                    Screens.Home.route -> "Moodsonix"
                     Screens.Search.route -> stringResource(R.string.search)
                     Screens.Library.route -> stringResource(R.string.filter_library)
                     Screens.ListenTogether.route -> stringResource(R.string.together)
@@ -1459,7 +1459,7 @@ class MainActivity : ComponentActivity() {
             else -> {
                 val videoId = when {
                     path == "watch" -> uri.getQueryParameter("v")
-                    uri.host == "youtu.be" || uri.host == "share.echomusic.fun" -> uri.pathSegments.firstOrNull()
+                    uri.host == "youtu.be" -> uri.pathSegments.firstOrNull()
                     else -> null
                 }
 

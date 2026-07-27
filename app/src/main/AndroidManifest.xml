@@ -54,10 +54,10 @@
         android:enableOnBackInvokedCallback="true"
         android:extractNativeLibs="true"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="false"
         android:largeHeap="true"
         android:theme="@style/Theme.echomusic"
@@ -117,21 +117,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="echomusic" />
+                <data android:scheme="moodsonix" />
                 <data android:host="listen" />
-            </intent-filter>
-
-            <!-- Echo Music Share Links -->
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:host="share.echomusic.fun" />
-                <data android:pathPrefix="/" />
             </intent-filter>
 
             <!-- Youtube filter -->
@@ -208,9 +195,9 @@
             android:name=".MainActivityAlias"
             android:enabled="true"
             android:exported="true"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
+            android:roundIcon="@drawable/ic_launcher"
             android:targetActivity=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -222,9 +209,9 @@
             android:name=".MainActivityLegacy"
             android:enabled="false"
             android:exported="true"
-            android:icon="@mipmap/legacy_icon"
+            android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/legacy_icon_round"
+            android:roundIcon="@drawable/ic_launcher"
             android:targetActivity=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -236,9 +223,9 @@
             android:name=".MainActivityStatic"
             android:enabled="false"
             android:exported="true"
-            android:icon="@mipmap/ic_launcher_static"
+            android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_static_round"
+            android:roundIcon="@drawable/ic_launcher"
             android:targetActivity=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -450,7 +437,7 @@
         <service
             android:name=".quicksettings.MusicRecognizerTileService"
             android:label="@string/qs_tile_music_recognizer"
-            android:icon="@drawable/ic_qs_echo_logo"
+            android:icon="@drawable/moodsonix_logo"
             android:exported="true"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>

@@ -65,6 +65,11 @@ import iad1tya.echo.music.echomusic.commitscreen.CommitScreen
 import iad1tya.echo.music.ui.screens.equalizer.axion.AxionEqScreen
 import iad1tya.echo.music.ui.screens.ambient.AmbientModeScreen
 import iad1tya.echo.music.ui.screens.MoodPlaylistScreen
+// ── Supabase screens ──────────────────────────────────────────────────────────
+import iad1tya.echo.music.ui.screens.supabase.ChatScreen
+import iad1tya.echo.music.ui.screens.supabase.ConversationListScreen
+import iad1tya.echo.music.ui.screens.supabase.SupabaseLoginScreen
+import iad1tya.echo.music.ui.screens.supabase.SupabaseRegisterScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 fun NavGraphBuilder.navigationBuilder(
@@ -495,5 +500,29 @@ fun NavGraphBuilder.navigationBuilder(
     }
     composable("settings/commits") {
         CommitScreen(navController, scrollBehavior)
+    }
+
+    // ── Supabase / Cloud Sync routes ──────────────────────────────────────────
+    // supabase_login       → Email/Password sign-in screen
+    // supabase_register    → Account creation screen
+    // conversations        → List of all DM conversations
+    // chat/{partnerId}     → Real-time one-to-one chat thread
+    composable("supabase_login") {
+        SupabaseLoginScreen(navController = navController)
+    }
+    composable("supabase_register") {
+        SupabaseRegisterScreen(navController = navController)
+    }
+    composable("conversations") {
+        ConversationListScreen(navController = navController)
+    }
+    composable(
+        route     = "chat/{partnerId}",
+        arguments = listOf(navArgument("partnerId") { type = NavType.StringType }),
+    ) { backStackEntry ->
+        ChatScreen(
+            navController = navController,
+            partnerUserId = backStackEntry.arguments?.getString("partnerId") ?: "",
+        )
     }
 }

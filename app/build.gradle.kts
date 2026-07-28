@@ -50,6 +50,16 @@ android {
         val openRouterApiKey = localProperties.getProperty("open_router_apikey") ?: System.getenv("open_router_apikey") ?: ""
         buildConfigField("String", "OPEN_ROUTER_API_KEY", "\"$openRouterApiKey\"")
 
+        // ── Supabase configuration ──────────────────────────────────────────
+        // Add SUPABASE_URL and SUPABASE_ANON_KEY to local.properties (see
+        // supabase.properties.template at the project root for the format).
+        // The anon key is safe to embed in the APK; Row Level Security (RLS)
+        // restricts what any user can read or write.
+        val supabaseUrl     = localProperties.getProperty("SUPABASE_URL")      ?: System.getenv("SUPABASE_URL")      ?: ""
+        val supabaseAnonKey = localProperties.getProperty("SUPABASE_ANON_KEY") ?: System.getenv("SUPABASE_ANON_KEY") ?: ""
+        buildConfigField("String", "SUPABASE_URL",      "\"$supabaseUrl\"")
+        buildConfigField("String", "SUPABASE_ANON_KEY", "\"$supabaseAnonKey\"")
+
         // GitHub OAuth keys
         val githubClientId = localProperties.getProperty("GH_CLIENT_ID") ?: System.getenv("GH_CLIENT_ID") ?: ""
         val githubClientSecret = localProperties.getProperty("GH_CLIENT_SECRET") ?: System.getenv("GH_CLIENT_SECRET") ?: ""
@@ -343,6 +353,16 @@ dependencies {
     // Protobuf for message serialization (lite version for Android)
     implementation(libs.protobuf.javalite)
     implementation(libs.protobuf.kotlin.lite)
+
+    // ── Supabase Kotlin SDK ───────────────────────────────────────────────────
+    // BOM ensures all modules stay on the same compatible version.
+    // gotrue-kt  → Email/Password auth, session management
+    // postgrest-kt → Type-safe PostgreSQL queries (profiles, playlists, etc.)
+    // realtime-kt  → Live DB subscriptions + Presence (typing indicators)
+    implementation(platform(libs.supabase.bom))
+    implementation(libs.supabase.gotrue)
+    implementation(libs.supabase.postgrest)
+    implementation(libs.supabase.realtime)
 
     coreLibraryDesugaring(libs.desugaring)
     implementation(libs.timber)

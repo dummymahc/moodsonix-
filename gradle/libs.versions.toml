@@ -46,6 +46,8 @@ coreSplashscreen = "1.2.0"
 ffmpegKit = "6.0-2"
 youtubedlAndroid = "0.17.3"
 playServicesAuth = "21.2.0"
+# Supabase Kotlin SDK — all modules share one BOM version
+supabase = "3.1.4"
 googleApiClient = "2.9.0"
 googleDriveApi = "v3-rev20260428-2.0.0"
 browser = "1.8.0"
@@ -151,6 +153,13 @@ play-services-auth = { module = "com.google.android.gms:play-services-auth", ver
 google-api-client-android = { module = "com.google.api-client:google-api-client-android", version.ref = "googleApiClient" }
 google-api-services-drive = { module = "com.google.apis:google-api-services-drive", version.ref = "googleDriveApi" }
 androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "browser" }
+
+# ── Supabase Kotlin SDK ───────────────────────────────────────────────────────
+# BOM keeps all supabase-kt modules on the same version automatically.
+supabase-bom        = { module = "io.github.jan-tennermann:bom",          version.ref = "supabase" }
+supabase-gotrue     = { module = "io.github.jan-tennermann:gotrue-kt"     }  # Auth
+supabase-postgrest  = { module = "io.github.jan-tennermann:postgrest-kt"  }  # Database
+supabase-realtime   = { module = "io.github.jan-tennermann:realtime-kt"   }  # Realtime / Presence
 
 [plugins]
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

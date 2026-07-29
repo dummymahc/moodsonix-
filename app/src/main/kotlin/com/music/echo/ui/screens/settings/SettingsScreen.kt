@@ -305,6 +305,17 @@ highlightKey: String? = null) {
                     )
                 }
             }
+            if ("support".contains(searchLower) || "developer".contains(searchLower) || "follow".contains(searchLower)) {
+                add(
+                    Material3SettingsItem(
+                        isHighlighted = (highlightKey == "Support"),
+                        icon = painterResource(R.drawable.github),
+                        title = { Text("Support") },
+                        description = { Text("Follow the developer: Abhinav K Tony") },
+                        onClick = { uriHandler.openUri("https://github.com/dummymahc") }
+                    )
+                )
+            }
             if (aboutText.lowercase().contains(searchLower)) {
                 add(
                     Material3SettingsItem(

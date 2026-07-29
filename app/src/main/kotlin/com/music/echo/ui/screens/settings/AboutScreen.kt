@@ -17,6 +17,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.material3.ripple
+import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.navigation.NavController
 import iad1tya.echo.music.BuildConfig
 import iad1tya.echo.music.LocalPlayerAwareWindowInsets
@@ -64,6 +75,7 @@ highlightKey: String? = null) {
             )
         },
     ) { innerPadding ->
+        val uriHandler = LocalUriHandler.current
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -85,10 +97,24 @@ highlightKey: String? = null) {
             item {
                 AboutSectionCard(title = "Built by") {
                     AboutActionRow(
-                        icon = painterResource(R.drawable.website),
-                        title = "Abhinav K Tont",
+                        icon = painterResource(R.drawable.person),
+                        title = "Abhinav K Tony",
                         subtitle = "Developer of Moodsonix",
-                        onClick = { },
+                        onClick = { uriHandler.openUri("https://github.com/dummymahc") },
+                    )
+                    AboutDivider()
+                    AboutActionRow(
+                        icon = painterResource(R.drawable.github),
+                        title = "GitHub",
+                        subtitle = "github.com/dummymahc",
+                        onClick = { uriHandler.openUri("https://github.com/dummymahc") },
+                    )
+                    AboutDivider()
+                    AboutActionRow(
+                        icon = painterResource(R.drawable.star),
+                        title = "Star the Repo",
+                        subtitle = "github.com/dummymahc/moodsonix-",
+                        onClick = { uriHandler.openUri("https://github.com/dummymahc/moodsonix-") },
                     )
                 }
             }

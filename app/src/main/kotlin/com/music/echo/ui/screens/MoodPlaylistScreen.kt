@@ -288,8 +288,9 @@ fun MoodPlaylistScreen(
                         }
                     }
 
-                    // AI key hint
-                    if (selectedMood != null && !isGenerating && statusMessage.isEmpty()) {
+                    // AI key hint — only show if no built-in key is present
+                    if (selectedMood != null && !isGenerating && statusMessage.isEmpty() &&
+                        iad1tya.echo.music.BuildConfig.OPENAI_API_KEY.isEmpty()) {
                         Text(
                             text = "Requires an AI API key in Settings → AI Settings",
                             style = MaterialTheme.typography.labelSmall,
@@ -394,10 +395,14 @@ suspend fun generateMoodPlaylist(
 
     onLog("Asking AI for ${mood.label} track recommendations…")
 
+    // Use the built-in OpenAI key first; fall back to user-configured key
+    val builtInKey = iad1tya.echo.music.BuildConfig.OPENAI_API_KEY
     val storedKey = context.dataStore.get(OpenRouterApiKey, "")
-    val apiKey = storedKey.ifEmpty { iad1tya.echo.music.BuildConfig.OPEN_ROUTER_API_KEY }
-    val baseUrl = context.dataStore.get(OpenRouterBaseUrlKey, "https://openrouter.ai/api/v1/chat/completions")
-    val model = context.dataStore.get(OpenRouterModelKey, "google/gemini-2.5-flash-lite")
+    val apiKey = builtInKey.ifEmpty { storedKey.ifEmpty { iad1tya.echo.music.BuildConfig.OPEN_ROUTER_API_KEY } }
+    val baseUrl = if (builtInKey.isNotEmpty()) "https://api.openai.com/v1/chat/completions"
+                  else context.dataStore.get(OpenRouterBaseUrlKey, "https://openrouter.ai/api/v1/chat/completions")
+    val model = if (builtInKey.isNotEmpty()) "gpt-4o-mini"
+                else context.dataStore.get(OpenRouterModelKey, "google/gemini-2.5-flash-lite")
 
     if (apiKey.isEmpty()) {
         onLog("No API key found. Please add your OpenRouter API key in Settings → AI Settings.")

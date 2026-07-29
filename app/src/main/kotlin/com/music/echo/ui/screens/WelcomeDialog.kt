@@ -30,6 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import iad1tya.echo.music.BuildConfig
@@ -62,6 +63,21 @@ fun WelcomeDialog(
             ) {
                 // Main Header
                 WelcomeAppCard()
+
+                val uriHandler = LocalUriHandler.current
+                OutlinedButton(
+                    onClick = { uriHandler.openUri("https://github.com/dummymahc/moodsonix-") },
+                    modifier = Modifier.fillMaxWidth().height(50.dp),
+                    shape = RoundedCornerShape(16.dp),
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.star),
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp),
+                    )
+                    Spacer(Modifier.width(8.dp))
+                    Text("Star the Repo", fontWeight = FontWeight.SemiBold, fontSize = 15.sp)
+                }
 
                 Button(
                     onClick = onDismissRequest,

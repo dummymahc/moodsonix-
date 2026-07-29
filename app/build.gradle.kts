@@ -50,6 +50,10 @@ android {
         val openRouterApiKey = localProperties.getProperty("open_router_apikey") ?: System.getenv("open_router_apikey") ?: ""
         buildConfigField("String", "OPEN_ROUTER_API_KEY", "\"$openRouterApiKey\"")
 
+        // OpenAI API key — used for all users on mood playlist creator
+        val openAiApiKey = localProperties.getProperty("OPENAI_API_KEY") ?: System.getenv("OPENAI_API_KEY") ?: ""
+        buildConfigField("String", "OPENAI_API_KEY", "\"$openAiApiKey\"")
+
         // ── Supabase configuration ──────────────────────────────────────────
         // Add SUPABASE_URL and SUPABASE_ANON_KEY to local.properties (see
         // supabase.properties.template at the project root for the format).

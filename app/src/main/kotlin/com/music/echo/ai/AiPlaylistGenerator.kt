@@ -61,9 +61,14 @@ object AiPlaylistGenerator {
             onLog("Puter is not implemented yet. Using dummy data.")
             "{}"
         } else {
-            val apiKey = context.dataStore.get(OpenRouterApiKey, "")
-            val baseUrl = context.dataStore.get(OpenRouterBaseUrlKey, "https://openrouter.ai/api/v1/chat/completions")
-            val model = context.dataStore.get(OpenRouterModelKey, "google/gemini-2.5-flash-lite")
+            // Use the built-in OpenAI key first; fall back to user-configured key
+            val builtInKey = iad1tya.echo.music.BuildConfig.OPENAI_API_KEY
+            val storedKey = context.dataStore.get(OpenRouterApiKey, "")
+            val apiKey = builtInKey.ifEmpty { storedKey.ifEmpty { "" } }
+            val baseUrl = if (builtInKey.isNotEmpty()) "https://api.openai.com/v1/chat/completions"
+                          else context.dataStore.get(OpenRouterBaseUrlKey, "https://openrouter.ai/api/v1/chat/completions")
+            val model = if (builtInKey.isNotEmpty()) "gpt-4o-mini"
+                        else context.dataStore.get(OpenRouterModelKey, "google/gemini-2.5-flash-lite")
 
             if (apiKey.isEmpty()) {
                 onLog("API Key is missing. Please set it in Settings.")

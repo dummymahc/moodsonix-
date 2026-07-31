@@ -124,15 +124,8 @@ highlightKey: String? = null) {
                     AboutActionRow(
                         icon = painterResource(R.drawable.currency_rupee_upi),
                         title = "UPI",
-                        subtitle = "Support via UPI",
-                        onClick = { uriHandler.openUri("https://github.com/dummymahc/moodsonix-/projects") },
-                    )
-                    AboutDivider()
-                    AboutActionRow(
-                        icon = painterResource(R.drawable.buymeacoffee),
-                        title = "Buy Me a Coffee",
-                        subtitle = "Support the developer",
-                        onClick = { uriHandler.openUri("https://github.com/dummymahc/moodsonix-/projects") },
+                        subtitle = "chinchutony4@okhdfcbank",
+                        onClick = { uriHandler.openUri("upi://pay?pa=chinchutony4@okhdfcbank&pn=Chinchu%20Tony&tn=Support%20Moodsonix") },
                     )
                 }
             }

@@ -66,7 +66,7 @@ fun WelcomeDialog(
 
                 val uriHandler = LocalUriHandler.current
                 OutlinedButton(
-                    onClick = { uriHandler.openUri("https://github.com/dummymahc/moodsonix-") },
+                    onClick = { uriHandler.openUri("https://github.com/dummymahc/moodsonix-/projects") },
                     modifier = Modifier.fillMaxWidth().height(50.dp),
                     shape = RoundedCornerShape(16.dp),
                 ) {

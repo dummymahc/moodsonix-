@@ -1093,11 +1093,9 @@ class MusicService :
         val silenceProcessor = SilenceDetectorAudioProcessor { handleLongSilenceDetected() }
 
         
-        runBlocking {
-            val skipSilence = dataStore.get(SkipSilenceKey, false)
-            val instantSkip = dataStore.get(SkipSilenceInstantKey, false)
-            silenceProcessor.instantModeEnabled = skipSilence && instantSkip
-        }
+        val skipSilence = dataStore.get(SkipSilenceKey, false)
+        val instantSkip = dataStore.get(SkipSilenceInstantKey, false)
+        silenceProcessor.instantModeEnabled = skipSilence && instantSkip
 
         val player = ExoPlayer.Builder(this)
             .setMediaSourceFactory(createMediaSourceFactory())
@@ -1125,12 +1123,10 @@ class MusicService :
         playerDuckProcessors[player] = duckProcessor
 
         player.apply {
-                runBlocking {
-                    val offload = dataStore.get(AudioOffload, false)
-                    val crossfade = dataStore.get(CrossfadeEnabledKey, false)
-                    setOffloadEnabled(if (crossfade) false else offload)
-                    skipSilenceEnabled = dataStore.get(SkipSilenceKey, false)
-                }
+                val offload = dataStore.get(AudioOffload, false)
+                val crossfade = dataStore.get(CrossfadeEnabledKey, false)
+                setOffloadEnabled(if (crossfade) false else offload)
+                skipSilenceEnabled = dataStore.get(SkipSilenceKey, false)
                 addAnalyticsListener(PlaybackStatsListener(false, this@MusicService))
 
                 

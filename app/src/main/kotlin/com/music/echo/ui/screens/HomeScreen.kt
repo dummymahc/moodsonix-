@@ -169,6 +169,7 @@ import kotlin.math.min
 import kotlin.random.Random
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import iad1tya.echo.music.viewmodels.DailyDiscoverItem
@@ -591,6 +592,9 @@ fun HomeScreen(
     val allLocalItems by viewModel.allLocalItems.collectAsState()
     val allYtItems by viewModel.allYtItems.collectAsState()
     val speedDialItems by viewModel.speedDialItems.collectAsState()
+    val pinnedIds by remember {
+        database.speedDialDao.getPinnedIds().map { it.toHashSet() }
+    }.collectAsState(initial = emptySet<String>())
     val selectedChip by viewModel.selectedChip.collectAsState()
 
     val isLoading: Boolean by viewModel.isLoading.collectAsState()
@@ -1119,7 +1123,7 @@ fun HomeScreen(
                                                                 }
                                                             } else if (itemIndex < pageItems.size) {
                                                                 val item = pageItems[itemIndex]
-                                                                val isPinned by database.speedDialDao.isPinned(item.id).collectAsState(initial = false)
+                                                                val isPinned = item.id in pinnedIds
 
                                                                 Box(
                                                                     modifier = Modifier
@@ -1260,9 +1264,8 @@ fun HomeScreen(
                                             .animateItem()
                                     ) { index ->
                                         val originalSong = distinctQuickPicks[index]
-                                        val song by database.song(originalSong.id)
-                                            .collectAsState(initial = originalSong)
-                                        val isActive = song!!.id == mediaMetadata?.id
+                                        val song = originalSong
+                                        val isActive = song.id == mediaMetadata?.id
 
                                         Box(
                                             modifier = Modifier
@@ -1278,14 +1281,14 @@ fun HomeScreen(
                                                         if (isActive) {
                                                             playerConnection.togglePlayPause()
                                                         } else {
-                                                            playerConnection.playQueue(YouTubeQueue.radio(song!!.toMediaMetadata()))
+                                                            playerConnection.playQueue(YouTubeQueue.radio(song.toMediaMetadata()))
                                                         }
                                                     },
                                                     onLongClick = {
                                                         haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                                                         menuState.show {
                                                             SongMenu(
-                                                                originalSong = song!!,
+                                                                originalSong = song,
                                                                 navController = navController,
                                                                 onDismiss = menuState::dismiss
                                                             )
@@ -1295,7 +1298,7 @@ fun HomeScreen(
                                         ) {
                                             AsyncImage(
                                                 model = coil3.request.ImageRequest.Builder(LocalContext.current)
-                                                    .data(song!!.thumbnailUrl)
+                                                    .data(song.thumbnailUrl)
                                                     .crossfade(true)
                                                     .build(),
                                                 contentDescription = null,
@@ -1344,14 +1347,14 @@ fun HomeScreen(
                                                     .padding(16.dp)
                                             ) {
                                                 Text(
-                                                    text = song!!.title,
+                                                    text = song.title,
                                                     style = MaterialTheme.typography.titleMedium,
                                                     color = Color.White,
                                                     maxLines = 1,
                                                     overflow = TextOverflow.Ellipsis
                                                 )
                                                 Text(
-                                                    text = song!!.artists.joinToString { it.name },
+                                                    text = song.artists.joinToString { it.name },
                                                     style = MaterialTheme.typography.bodyMedium,
                                                     color = Color.White.copy(alpha = 0.7f),
                                                     maxLines = 1,
@@ -1585,13 +1588,12 @@ fun HomeScreen(
                                             items = forgottenFavorites.distinctBy { it.id },
                                             key = { _, it -> it.id }
                                         ) { index, originalSong ->
-                                            val song by database.song(originalSong.id)
-                                                .collectAsState(initial = originalSong)
+                                            val song = originalSong
 
                                             SongListItem(
-                                                song = song!!,
+                                                song = song,
                                                 showInLibraryIcon = true,
-                                                isActive = song!!.id == mediaMetadata?.id,
+                                                isActive = song.id == mediaMetadata?.id,
                                                 isPlaying = isPlaying,
                                                 isSwipeable = false,
                                                 shape = listItemShape(index = index % rows, count = rows),
@@ -1601,7 +1603,7 @@ fun HomeScreen(
                                                             haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                                                             menuState.show {
                                                                 SongMenu(
-                                                                    originalSong = song!!,
+                                                                    originalSong = song,
                                                                     navController = navController,
                                                                     onDismiss = menuState::dismiss
                                                                 )
@@ -1618,12 +1620,12 @@ fun HomeScreen(
                                                     .width(horizontalLazyGridItemWidth)
                                                     .combinedClickable(
                                                         onClick = {
-                                                            if (song!!.id == mediaMetadata?.id) {
+                                                            if (song.id == mediaMetadata?.id) {
                                                                 playerConnection.togglePlayPause()
                                                             } else {
                                                                 playerConnection.playQueue(
                                                                     YouTubeQueue.radio(
-                                                                        song!!.toMediaMetadata()
+                                                                        song.toMediaMetadata()
                                                                     )
                                                                 )
                                                             }
@@ -1632,7 +1634,7 @@ fun HomeScreen(
                                                             haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                                                             menuState.show {
                                                                 SongMenu(
-                                                                    originalSong = song!!,
+                                                                    originalSong = song,
                                                                     navController = navController,
                                                                     onDismiss = menuState::dismiss
                                                                 )

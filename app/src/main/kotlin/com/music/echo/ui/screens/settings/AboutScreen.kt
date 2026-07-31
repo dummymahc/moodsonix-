@@ -113,8 +113,26 @@ highlightKey: String? = null) {
                     AboutActionRow(
                         icon = painterResource(R.drawable.star),
                         title = "Star the Repo",
-                        subtitle = "github.com/dummymahc/moodsonix-",
-                        onClick = { uriHandler.openUri("https://github.com/dummymahc/moodsonix-") },
+                        subtitle = "github.com/dummymahc/moodsonix-/projects",
+                        onClick = { uriHandler.openUri("https://github.com/dummymahc/moodsonix-/projects") },
+                    )
+                }
+            }
+
+            item {
+                AboutSectionCard(title = "Support") {
+                    AboutActionRow(
+                        icon = painterResource(R.drawable.currency_rupee_upi),
+                        title = "UPI",
+                        subtitle = "Support via UPI",
+                        onClick = { uriHandler.openUri("https://github.com/dummymahc/moodsonix-/projects") },
+                    )
+                    AboutDivider()
+                    AboutActionRow(
+                        icon = painterResource(R.drawable.buymeacoffee),
+                        title = "Buy Me a Coffee",
+                        subtitle = "Support the developer",
+                        onClick = { uriHandler.openUri("https://github.com/dummymahc/moodsonix-/projects") },
                     )
                 }
             }

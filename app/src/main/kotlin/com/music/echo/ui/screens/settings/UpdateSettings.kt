@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -68,6 +69,7 @@ fun UpdateSettings(
     val scrollState = androidx.compose.foundation.rememberScrollState()
 
     val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
     var autoUpdateEnabled by remember { mutableStateOf(getAutoUpdateCheckSetting(context)) }
     var updateNotificationsEnabled by remember { mutableStateOf(getUpdateNotificationsSetting(context)) }
     var betaUpdatesEnabled by remember { mutableStateOf(getBetaUpdatesSetting(context)) }
@@ -109,8 +111,7 @@ fun UpdateSettings(
                         }
                     },
                     onClick = {
-                        val isFoss = !BuildConfig.CAST_AVAILABLE
-                        navController.navigate("update")
+                        uriHandler.openUri("https://github.com/dummymahc/moodsonix-/projects")
                     }
                 ),
                 Material3SettingsItem(
@@ -240,20 +241,6 @@ fun UpdateSettings(
             )
         )
         
-        Spacer(modifier = Modifier.height(16.dp))
-        Material3SettingsGroup(scrollState = scrollState, 
-            title = stringResource(R.string.commits),
-            items = listOf(
-                Material3SettingsItem(
-    isHighlighted = (highlightKey == stringResource(R.string.commits)),
-                    icon = painterResource(R.drawable.commit),
-                    title = { Text(stringResource(R.string.commits)) },
-                    description = { Text(stringResource(R.string.view_commit_history)) },
-                    onClick = { navController.navigate("settings/commits") }
-                )
-            )
-        )
-
         Spacer(modifier = Modifier.height(16.dp))
     
         Spacer(Modifier.windowInsetsPadding(LocalPlayerAwareWindowInsets.current.only(WindowInsetsSides.Bottom)))

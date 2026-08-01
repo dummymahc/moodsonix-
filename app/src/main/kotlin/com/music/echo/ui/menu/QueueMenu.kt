@@ -87,6 +87,7 @@ fun QueueMenu(
     playerBottomSheetState: BottomSheetState,
     onShowDetailsDialog: () -> Unit,
     onDismiss: () -> Unit,
+    onRemoveFromQueue: (() -> Unit)? = null,
 ) {
     mediaMetadata ?: return
     val context = LocalContext.current
@@ -348,6 +349,22 @@ fun QueueMenu(
                             }
                         }
                     )
+                ) + listOfNotNull(
+                    onRemoveFromQueue?.let { removeAction ->
+                        Material3MenuItemData(
+                            title = { Text(text = stringResource(R.string.remove_from_queue)) },
+                            icon = {
+                                Icon(
+                                    painter = painterResource(R.drawable.delete),
+                                    contentDescription = null,
+                                )
+                            },
+                            onClick = {
+                                removeAction()
+                                onDismiss()
+                            }
+                        )
+                    }
                 )
             )
         }

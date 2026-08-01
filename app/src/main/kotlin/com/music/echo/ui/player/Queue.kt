@@ -1224,6 +1224,10 @@ fun Queue(
                                                                         }
                                                                     },
                                                                     onDismiss = menuState::dismiss,
+                                                                    onRemoveFromQueue = {
+                                                                        playerConnection.player.removeMediaItem(currentItem.firstPeriodIndex)
+                                                                        menuState.dismiss()
+                                                                    },
                                                                 )
                                                             }
                                                         }

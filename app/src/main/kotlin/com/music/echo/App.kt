@@ -95,7 +95,7 @@ class App : Application(), SingletonImageLoader.Factory {
             
             // Warm the cipher WebView off the first-play critical path
             launch(Dispatchers.IO) {
-                delay(1500)
+                delay(300)
                 CipherDeobfuscator.prewarm()
             }
             
@@ -256,12 +256,12 @@ class App : Application(), SingletonImageLoader.Factory {
             dataStore.data.map { it[MaxImageCacheSizeKey] ?: 512 }.first()
         }
         return ImageLoader.Builder(this).apply {
-            crossfade(true)
+            crossfade(150)
             allowHardware(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
             
             memoryCache {
                 MemoryCache.Builder()
-                    .maxSizePercent(context, 0.25)
+                    .maxSizePercent(context, 0.30)
                     .build()
             }
             if (cacheSize == 0) {

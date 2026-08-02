@@ -1,1 +1,2 @@
 - [Android SDK build environment](android-sdk-env.md) — SDK + debug keystore are wiped each session; build-apk.sh auto-reinstalls both before invoking Gradle.
+- [Supabase Android dependency compatibility](supabase-android-dependencies.md) — verify Maven Central coordinates and SDK generation against the source imports before upgrading Supabase.

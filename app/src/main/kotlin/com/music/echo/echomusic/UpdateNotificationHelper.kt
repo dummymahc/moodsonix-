@@ -19,9 +19,40 @@ object UpdateNotificationHelper {
     private const val NOTIFICATION_ID = 1001
 
     fun showUpdateNotification(context: Context, versionName: String) {
-        // Notification blocked: this function intentionally does nothing so update
-        // notifications / "new version available" messages are suppressed.
-        // It was changed to a no-op to "block that message" as requested.
-        return
+        val nm = context.getSystemService(NotificationManager::class.java)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                CHANNEL_ID,
+                context.getString(R.string.app_updates_title),
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            nm.createNotificationChannel(channel)
+        }
+
+        
+        val apkUrl = if (versionName.contains("nightly", ignoreCase = true)) {
+            "https://nightly.link/EchoMusicApp/workflows/nightly.yml/main/echomusic-gms-nightly.zip"
+        } else {
+            "https://github.com/EchoMusicApp/Echo-Music/releases/download/$versionName/echomusic.apk"
+        }
+        val intent = Intent(Intent.ACTION_VIEW, apkUrl.toUri())
+
+        val flags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        val pending = PendingIntent.getActivity(context, NOTIFICATION_ID, intent, flags)
+
+        val notif = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_launcher_nobg)
+            .setContentTitle(context.getString(R.string.update_available_title))
+            .setContentText(versionName)
+            .setContentIntent(pending)
+            .setAutoCancel(true)
+            .build()
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
+            ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
+        ) {
+            NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, notif)
+        }
     }
 }

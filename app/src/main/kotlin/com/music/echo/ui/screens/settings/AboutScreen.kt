@@ -28,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.draw.clip
 import androidx.navigation.NavController
 import iad1tya.echo.music.BuildConfig
 import iad1tya.echo.music.LocalPlayerAwareWindowInsets

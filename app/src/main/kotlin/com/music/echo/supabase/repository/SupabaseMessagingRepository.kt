@@ -9,6 +9,9 @@ import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Order
 import io.github.jan.supabase.realtime.PostgresAction
 import io.github.jan.supabase.realtime.channel
+import io.github.jan.supabase.realtime.decodeJoinsAs
+import io.github.jan.supabase.realtime.decodeLeavesAs
+import io.github.jan.supabase.realtime.decodeRecord
 import io.github.jan.supabase.realtime.postgresChangeFlow
 import io.github.jan.supabase.realtime.presenceChangeFlow
 import io.github.jan.supabase.realtime.RealtimeChannel
@@ -117,6 +120,7 @@ class SupabaseMessagingRepository @Inject constructor(
                 eq("is_read",     false)
             }
         }
+        Unit
     }.onFailure { Timber.e(it, "Supabase messaging: markMessagesAsRead failed") }
 
     // ── Realtime — live message stream ────────────────────────────────────────
@@ -166,10 +170,9 @@ class SupabaseMessagingRepository @Inject constructor(
     fun typingPresenceFlow(): Flow<List<TypingPresence>> {
         val ch = activeChannel ?: error("Call openMessageChannel() first")
         return ch.presenceChangeFlow()
-            .map { state ->
-                state.decodePresenceDataAs<TypingPresence>()
-                    .values
-                    .flatten()
+            .map { action ->
+                action.decodeJoinsAs<TypingPresence>() +
+                    action.decodeLeavesAs<TypingPresence>()
             }
     }
 

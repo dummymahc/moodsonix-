@@ -46,9 +46,7 @@ class SupabaseSettingsRepository @Inject constructor(
             updatedAt    = java.time.Instant.now().toString(),
         )
         // ON CONFLICT (user_id) DO UPDATE — the table has a UNIQUE constraint on user_id
-        supabase.from(TABLE).upsert(payload) {
-            onConflict = "user_id"
-        }
+        supabase.from(TABLE).upsert(payload, onConflict = "user_id")
         Timber.d("Supabase settings: saved for $uid")
     }.onFailure { Timber.e(it, "Supabase settings: saveSettings failed") }
 

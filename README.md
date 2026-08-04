@@ -18,7 +18,7 @@
     <img src="assets/download.png" alt="Download" width="180"/>
   </a>
   &nbsp;
-  <a href="https://echomusic.fun/obtainium">
+  <a href="https://moodsonix.lovable.app/">
     <img src="assets/obtainium.png" alt="Get it on Obtainium" width="180"/>
   </a>
 </div>
@@ -27,7 +27,7 @@
 
 ## Overview
 
-Echo Music delivers a seamless, premium listening experience by leveraging YouTube Music's vast library — without the ads. It adds powerful extras including offline downloads, real-time synchronized lyrics, and environment-aware music recognition.
+moodsonix  delivers a seamless, premium listening experience by leveraging YouTube Music's vast library — without the ads. It adds powerful extras including offline downloads, real-time synchronized lyrics, and environment-aware music recognition.
 
 ---
 
@@ -115,9 +115,9 @@ Echo Music delivers a seamless, premium listening experience by leveraging YouTu
 - **Crossfade** — Smooth transitions between tracks.
 - **Canvas Animations** — Visual animations while playing music.
 
-### Discovery & Echo Find
-- **Echo Find** — Identify songs playing around you using advanced audio recognition.
-- **Echo Brain** — An intelligent, on-device engine that analyzes your listening momentum and auto-injects perfectly aligned tracks into your queue. Read more in the [Echo Brain Documentation](ECHO_BRAIN_DOCS.md).
+### Discovery & Find
+- ** Find** — Identify songs playing around you using advanced audio recognition.
+- **Brain** — An intelligent, on-device engine that analyzes your listening momentum and auto-injects perfectly aligned tracks into your queue. Read more in the [Echo Brain Documentation](ECHO_BRAIN_DOCS.md).
 - **Smart Recommendations** — Personalized suggestions based on your listening history.
 - **Comprehensive Browsing** — Explore Charts, Podcasts, Moods, and Genres.
 
@@ -149,7 +149,7 @@ Echo Music delivers a seamless, premium listening experience by leveraging YouTu
 
 ### Android Installation
 
-Download the latest pre-compiled APK from the [Releases Page](https://github.com/iad1tya/Echo-Music/releases/latest).
+Download the latest pre-compiled APK from the [Releases Page](https://moodsonix.lovable.app/).
 
 ### Building from Source
 
@@ -170,7 +170,7 @@ Download the latest pre-compiled APK from the [Releases Page](https://github.com
    Firebase is required for analytics and crash reporting. See the instructions in [SETUP.md](SETUP.md#3-configure-firebase-optional) for adding your `google-services.json`.
 
 4. **Build the Application**
-   Echo Music has two build variants: **FOSS** (without Google Play Services / Cast) and **GMS** (with Cast support).
+   moodsonix   has two build variants: **FOSS** (without Google Play Services / Cast) and **GMS** (with Cast support).
    
    To build the FOSS Universal Debug variant:
    ```bash
@@ -207,7 +207,7 @@ Join the community for updates, discussions, and help.
 
 ## Support the Project
 
-If Echo Music has been useful to you, consider supporting its development.
+If moodsonix  has been useful to you, consider supporting its development.
 
 <div align="center">
   <a href="https://buymeacoffee.com/iad1tya" style="text-decoration:none;"><img src="assets/bmac.png" alt="Buy Me A Coffee Logo" width="140" style="margin: 0 10px;"/></a>
@@ -235,7 +235,7 @@ Echo Music stands on the shoulders of several excellent open-source projects. Si
 | [ArchiveTune](https://github.com/koiverse/ArchiveTune) | Material You UI inspiration |
 | [Better Lyrics](https://better-lyrics.boidu.dev/) | Lyrics enhancement and synchronization |
 | [SimpMusic](https://github.com/maxrave-dev/SimpMusic) | Lyrics implementation reference |
-| [Music Recognizer](https://github.com/aleksey-saenko/MusicRecognizer) | Audio recognition (Echo Find) |
+| [Music Recognizer](https://github.com/aleksey-saenko/MusicRecognizer) | Audio recognition ( Find) |
 | [Flow](https://github.com/a-edev/Flow) | AI queue generation engine (Echo Brain) |
 | [zemer-cipher](hhttps://github.com/ZemerTeam/zemer-cipher) | YouTube cipher deobfuscation and PoToken generation |
 

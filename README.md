@@ -1,7 +1,7 @@
 <div align="center">
   <img src="assets/Echo-new.png" alt="Echo Music Logo" width="140"/>
 
-  <h1>Echo Music</h1>
+  <h1>moodsonix</h1>
 
   <p><strong>A modern Android music app with ad-free streaming, synced lyrics, offline playback, and an intuitive user experience.
 </strong></p>

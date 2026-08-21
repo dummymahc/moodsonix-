@@ -440,14 +440,16 @@ class MainActivity : ComponentActivity() {
                 delay(2000L)
                 checkForUpdate(
                     context = context,
-                    onSuccess = { latestVersion, isAvailable, _, _, _, _, _, _ ->
+                    onSuccess = { latestVersion, isAvailable, _, _, _, _, _, apkUrl ->
                         val currentVersion = BuildConfig.VERSION_NAME
                         Log.d("UpdateCheck", "Startup check success. Latest: $latestVersion, Current: $currentVersion, isAvailable: $isAvailable")
                         saveUpdateAvailableState(context, isAvailable)
                         
                         if (isAvailable && getUpdateNotificationsSetting(context)) {
                             Log.d("UpdateCheck", "Posting update notification for $latestVersion")
-                            UpdateNotificationHelper.showUpdateNotification(context, latestVersion)
+                            apkUrl?.let {
+                                UpdateNotificationHelper.showUpdateNotification(context, latestVersion, it)
+                            }
                         }
                     },
                     onError = {

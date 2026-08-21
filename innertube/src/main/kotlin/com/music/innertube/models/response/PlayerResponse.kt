@@ -67,7 +67,10 @@ data class PlayerResponse(
             val isAudio: Boolean
                 get() = width == null
             val isOriginal: Boolean
-                get() = audioTrack?.isAutoDubbed == null
+                // YouTube may include an AudioTrack object for the original
+                // language with isAutoDubbed=false. Only an explicit true
+                // value identifies an auto-dubbed track.
+                get() = audioTrack?.isAutoDubbed != true
 
             @Serializable
             data class AudioTrack(

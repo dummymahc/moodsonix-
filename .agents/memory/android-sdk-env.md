@@ -15,3 +15,4 @@ description: Replit session persistence issues for the Moodsonix Android build a
 - SDK components needed: `platform-tools`, `platforms;android-36`, `build-tools;35.0.0`, `ndk;27.0.12077973`
 - Keystore: generated with `keytool`, alias `androiddebugkey`, storepass/keypass both `android`
 - `local.properties` (`sdk.dir=...`) is in the workspace so it persists, but the path it points to does not — `build-apk.sh` rewrites it each run anyway.
+- On the 7.8 GiB Replit runner, a full APK build may need `--max-workers=2` with reduced Gradle/Kotlin daemon heaps; the source can compile successfully under those limits even when the default 4 GiB daemon is killed.

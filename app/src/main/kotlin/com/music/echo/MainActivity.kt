@@ -169,8 +169,10 @@ import iad1tya.echo.music.constants.NavigationBarAnimationSpec
 import iad1tya.echo.music.constants.NavigationBarHeight
 import iad1tya.echo.music.echomusic.updater.checkForUpdate
 import iad1tya.echo.music.echomusic.updater.getAutoUpdateCheckSetting
+import iad1tya.echo.music.echomusic.updater.getUpdateNotificationsSetting
 import iad1tya.echo.music.echomusic.updater.isNewerVersion
 import iad1tya.echo.music.echomusic.updater.saveUpdateAvailableState
+import iad1tya.echo.music.echomusic.UpdateNotificationHelper
 
 
 import android.util.Log
